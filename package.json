@@ -8,6 +8,7 @@
   },
   "author": "hang.yin2017@outlook.com",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "prompt-sync": "^4.2.0"
   }
