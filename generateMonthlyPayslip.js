@@ -24,7 +24,7 @@ const getUserInput = () => ({
  * @param {TaxTier[]} taxTable
  * @returns A tax tier.
  */
-const findTaxTier = (income, taxTable) => {
+exports.findTaxTier = (income, taxTable) => {
   return taxTable.find(tier => {
     const { min, max } = tier;
     return income > min && income <= max;
@@ -37,7 +37,7 @@ const findTaxTier = (income, taxTable) => {
  * @param {TaxTier} taxTier The proper tax tier used to calculate tax.
  * @returns Calculated tax.
  */
-const calculateTax = (income, { floor, base, rate }) => {
+exports.calculateTax = (income, { floor, base, rate }) => {
   const taxableInThisTier = income -floor;
   const taxInThisTier = taxableInThisTier * rate;
   return base + taxInThisTier;
