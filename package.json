@@ -4,12 +4,16 @@
   "description": "Generates montly payslip according to income and tax rates",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node main.js",
+    "test": "jest"
   },
   "author": "hang.yin2017@outlook.com",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
   }
 }

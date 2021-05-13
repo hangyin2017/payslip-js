@@ -1,14 +1,12 @@
 "use strict";
 
-import promptSync from 'prompt-sync';
-
-const prompt = promptSync({ sigint: true });
+const prompt = require('prompt-sync')({ sigint: true });
 
 /**
  * Prints monthly payslip based on user input and tax table.
  * @param {TaxTier[]} taxTable
  */
-const generateMonthlyPayslip = (taxTable) => {
+exports.generateMonthlyPayslip = (taxTable) => {
   const { name, income } = getUserInput();
   const tier = findTaxTier(income, taxTable);
   const tax = calculateTax(income, tier);
@@ -70,9 +68,7 @@ const printResult = (name, income, tax) => {
  * @param {number} value Annual value, such as annual income.
  * @returns Monthly value, such as monthly income.
  */
-const calculateMonthlyValue = (value) => {
+exports.calculateMonthlyValue = (value) => {
   const MONTHS_A_YEAR = 12;
   return value / MONTHS_A_YEAR;
 };
-
-export default generateMonthlyPayslip;

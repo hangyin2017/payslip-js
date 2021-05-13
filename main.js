@@ -1,6 +1,6 @@
 "use strict";
 
-import { TAX_TABLE } from './taxTable2021.js';
-import generateMonthlyPayslip from './generateMonthlyPayslip.js';
+const { TAX_TABLE } = require('./taxTable2021');
+const { generateMonthlyPayslip } = require('./generateMonthlyPayslip');
 
 generateMonthlyPayslip(TAX_TABLE);
