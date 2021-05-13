@@ -1,0 +1,14 @@
+{
+  "name": "payslip",
+  "version": "1.0.0",
+  "description": "Generates montly payslip according to income and tax rates",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "author": "hang.yin2017@outlook.com",
+  "license": "ISC",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}
