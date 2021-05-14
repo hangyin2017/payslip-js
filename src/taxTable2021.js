@@ -9,7 +9,7 @@
 /**
 * @type {TaxTier[]}
 */
-export const TAX_TABLE = [
+const TAX_TABLE = [
   {
     min: 0,
     max: 20000,
@@ -46,3 +46,5 @@ export const TAX_TABLE = [
     rate: 0.4,
   },
 ];
+
+module.exports = { TAX_TABLE };
