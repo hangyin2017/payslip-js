@@ -1,13 +1,6 @@
+
 /**
-* @typedef TaxTier
-* @property {number} min Maximum income of this tier.
-* @property {number} max Minimum income of this tier.
-* @property {number} floor Equals to the max of the lower tier.
-* @property {number} base Accumulated tax from lower tiers.
-* @property {number} rate Tax rate of this tier.
-*/
-/**
-* @type {TaxTier[]}
+* @type {import('./generateMonthlyPayslip').TaxTier[]}
 */
 const TAX_TABLE = [
   {

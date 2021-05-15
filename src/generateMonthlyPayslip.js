@@ -4,6 +4,15 @@ const { getUserInput } = require('./getUserInput');
 const { printResult } = require('./printResult');
 
 /**
+* @typedef TaxTier
+* @property {number} min Maximum income of this tier.
+* @property {number} max Minimum income of this tier.
+* @property {number} floor Equals to the max of the lower tier.
+* @property {number} base Accumulated tax from lower tiers.
+* @property {number} rate Tax rate of this tier.
+*/
+
+/**
  * Prints monthly payslip based on user input and tax table.
  * @param {TaxTier[]} taxTable
  */
@@ -30,7 +39,7 @@ const calculateTax = (income, taxTable) => {
  * @param {string} name
  * @param {number} income Annually income.
  * @param {number} tax Annually tax.
- * @returns {MonthlyPayslipData} Monthly payslip data.
+ * @returns {import('./printResult').MonthlyPayslipData} Monthly payslip data.
  */
 const calculateMonthlyPayslipData = (name, income, tax) => {
   const MONTHS_A_YEAR = 12;
