@@ -10,13 +10,40 @@ const { printResult } = require('./printResult');
 const generateMonthlyPayslip = (taxTable) => {
   const { name, income } = getUserInput();
   const tax = calculateTax(income, taxTable);
-  printResult(name, income, tax);
+  const monthlyPayslipData = calculateMonthlyPayslipData(name, income, tax);
+  printResult(monthlyPayslipData);
 };
 
+/**
+ * Calculates annual tax based on income and tax table.
+ * @param {number} income 
+ * @param {TaxTier[]} taxTable 
+ * @returns Annual tax.
+ */
 const calculateTax = (income, taxTable) => {
   const tier = findTaxTier(income, taxTable);
   return calculateTaxInTier(income, tier);
-}
+};
+
+/**
+ * Calculates monthly payslip data.
+ * @param {string} name
+ * @param {number} income Annually income.
+ * @param {number} tax Annually tax.
+ * @returns {MonthlyPayslipData} Monthly payslip data.
+ */
+const calculateMonthlyPayslipData = (name, income, tax) => {
+  const MONTHS_A_YEAR = 12;
+  const monthlyIncome = income / MONTHS_A_YEAR;
+  const monthlyTax = tax / MONTHS_A_YEAR;
+
+  return {
+    name,
+    monthlyIncome,
+    monthlyTax,
+    netMonthlyIncome: monthlyIncome - monthlyTax,
+  }
+};
 
 /**
  * Finds out which tax tier the provided income falls into.
@@ -43,4 +70,4 @@ const calculateTaxInTier = (income, { floor, base, rate }) => {
   return base + taxInThisTier;
 };
 
-module.exports = { generateMonthlyPayslip, calculateTax };
+module.exports = { generateMonthlyPayslip, calculateTax, calculateMonthlyPayslipData };
