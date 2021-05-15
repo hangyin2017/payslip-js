@@ -9,10 +9,14 @@ const { printResult } = require('./printResult');
  */
 const generateMonthlyPayslip = (taxTable) => {
   const { name, income } = getUserInput();
-  const tier = findTaxTier(income, taxTable);
-  const tax = calculateTax(income, tier);
+  const tax = calculateTax(income, taxTable);
   printResult(name, income, tax);
 };
+
+const calculateTax = (income, taxTable) => {
+  const tier = findTaxTier(income, taxTable);
+  return calculateTaxInTier(income, tier);
+}
 
 /**
  * Finds out which tax tier the provided income falls into.
@@ -33,10 +37,10 @@ const findTaxTier = (income, taxTable) => {
  * @param {TaxTier} taxTier The proper tax tier used to calculate tax.
  * @returns Calculated tax.
  */
-const calculateTax = (income, { floor, base, rate }) => {
+const calculateTaxInTier = (income, { floor, base, rate }) => {
   const taxableInThisTier = income -floor;
   const taxInThisTier = taxableInThisTier * rate;
   return base + taxInThisTier;
 };
 
-module.exports = { generateMonthlyPayslip, findTaxTier, calculateTax };
+module.exports = { generateMonthlyPayslip, calculateTax };
