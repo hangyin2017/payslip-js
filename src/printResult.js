@@ -12,11 +12,12 @@
  * @param {MonthlyPayslipData} monthlyPayslipData 
  */
 const printResult = ({ name, monthlyIncome, monthlyTax, netMonthlyIncome }) => {
+  const PRECISION = 2;
   const result = `
     Monthly Payslip for: "${name}"
-    Gross Monthly Income: $${monthlyIncome}
-    Monthly Income Tax: $${monthlyTax}
-    Net Monthly Income: $${netMonthlyIncome}
+    Gross Monthly Income: $${monthlyIncome.toFixed(PRECISION)}
+    Monthly Income Tax: $${monthlyTax.toFixed(PRECISION)}
+    Net Monthly Income: $${netMonthlyIncome.toFixed(PRECISION)}
   `;
 
   console.log(result);
