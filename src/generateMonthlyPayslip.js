@@ -1,7 +1,9 @@
 "use strict";
 
-const { getUserInput } = require('./getUserInput');
-const { printResult } = require('./printResult');
+const { getUserInput } = require('./getUserInput/getUserInput');
+const { calculateTax } = require('./calculateTax/calculateTax');
+const { calculateMonthlyPayslipData } = require('./calculateMonthlyPayslipData/calculateMonthlyPayslipData');
+const { printResult } = require('./printResult/printResult');
 
 /**
 * @typedef TaxTier
@@ -23,60 +25,4 @@ const generateMonthlyPayslip = (taxTable) => {
   printResult(monthlyPayslipData);
 };
 
-/**
- * Calculates annual tax based on income and tax table.
- * @param {number} income 
- * @param {TaxTier[]} taxTable 
- * @returns Annual tax.
- */
-const calculateTax = (income, taxTable) => {
-  const tier = findTaxTier(income, taxTable);
-  return calculateTaxInTier(income, tier);
-};
-
-/**
- * Calculates monthly payslip data.
- * @param {string} name
- * @param {number} income Annually income.
- * @param {number} tax Annually tax.
- * @returns {import('./printResult').MonthlyPayslipData} Monthly payslip data.
- */
-const calculateMonthlyPayslipData = (name, income, tax) => {
-  const MONTHS_A_YEAR = 12;
-  const monthlyIncome = income / MONTHS_A_YEAR;
-  const monthlyTax = tax / MONTHS_A_YEAR;
-
-  return {
-    name,
-    monthlyIncome,
-    monthlyTax,
-    netMonthlyIncome: monthlyIncome - monthlyTax,
-  }
-};
-
-/**
- * Finds out which tax tier the provided income falls into.
- * @param {number} income
- * @param {TaxTier[]} taxTable
- * @returns A tax tier.
- */
-const findTaxTier = (income, taxTable) => {
-  return taxTable.find(tier => {
-    const { min, max } = tier;
-    return income > min && income <= max;
-  });
-};
-
-/**
- * Calculates tax based on income and tax tier.
- * @param {number} income
- * @param {TaxTier} taxTier The proper tax tier used to calculate tax.
- * @returns Calculated tax.
- */
-const calculateTaxInTier = (income, { floor, base, rate }) => {
-  const taxableInThisTier = income -floor;
-  const taxInThisTier = taxableInThisTier * rate;
-  return base + taxInThisTier;
-};
-
-module.exports = { generateMonthlyPayslip, calculateTax, calculateMonthlyPayslipData };
+module.exports = { generateMonthlyPayslip };
