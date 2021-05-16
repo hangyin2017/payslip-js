@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { getUserInput } = require('./getUserInput/getUserInput');
 const { calculateTax } = require('./calculateTax/calculateTax');

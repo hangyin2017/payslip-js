@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * @typedef MonthlyPayslipData
@@ -57,7 +57,8 @@ const printResult = ({ name, monthlyIncome, monthlyTax, netMonthlyIncome }) => {
 };
 
 /**
- * Converts a result item to text.
+ * Converts a result item to text using a formatter.
+ * Converts to string if there is no suitable formatter.
  * @param {ResultItem} resultItem
  * @returns {string}
  */
@@ -96,4 +97,4 @@ const FORMATTERS = {
   [VALUE_TYPE.money]: moneyFormatter,
 };
 
-module.exports = { printResult };
+module.exports = { printResult, toRowText, VALUE_TYPE };

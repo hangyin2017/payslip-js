@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 /**
  * Calculates monthly payslip data.

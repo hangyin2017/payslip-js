@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { TAX_TABLE } = require('./taxTable2021');
 const { generateMonthlyPayslip } = require('./generateMonthlyPayslip');
